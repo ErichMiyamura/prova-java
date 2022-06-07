@@ -13,13 +13,14 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.contmatic.prova.contato.Email;
 
 public class EmailTest {
 	
-	private static final String RESULTADO_ESPERADO = "Email [enderecoEmail=joaomaria@outlook.com, tipo=Pessoal]";
+	private static final String RESULTADO_ESPERADO = "Email [endereco=joaomaria@outlook.com, tipo=Pessoal]";
 	private static final String EMAIL = "joaomaria@outlook.com";
 	private static final String EMAIL_2 = "cleiton@outlook.com";
 	private static final String TIPO_EMAIL = "Pessoal";
@@ -45,7 +46,7 @@ public class EmailTest {
 	}
 	
 	//////////////////////////////////////////////////// TESTE CONSTRUTOR OBRIGATORIO ////////////////////////////////////////////////////
-	@Test
+	@Test(timeout = 1000)
 	public void deve_verificar_o_construtor_classe_obrigatorio() {
 		Email e1 = new Email(EMAIL);
 
@@ -84,7 +85,14 @@ public class EmailTest {
 		emailCompleto.setEndereco("anamaria_123@gmail.com");
 		assertThat(emailCompleto.getEndereco(), is("anamaria_123@gmail.com"));
 	}
-
+	
+	@Test
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_teste_email() {
+		emailCompleto.setEndereco("anamaria_123@gmail.com");
+		assertThat(emailCompleto.getEndereco(), is("anamaria_123@gmail.com"));
+	}
+	
 	@Test
 	public void deve_verificar_que_email_nao_sao_iguais() {
 		assertThat(emailCompleto.getEndereco(), is(not("gg@outlook.com")));
@@ -93,6 +101,21 @@ public class EmailTest {
 	@Test(expected = IllegalStateException.class)
 	public void nao_deve_aceitar_email() {
 		emailCompleto.setEndereco("@gmail.123");
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void nao_deve_aceitar_email_com_espaco_no_inicio() {
+		emailCompleto.setEndereco(" anamaria_123@gmail.com");
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void nao_deve_aceitar_email_com_espaco_no_meio() {
+		emailCompleto.setEndereco(" anamaria 123@gmail.com");
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void nao_deve_aceitar_email_com_espaco_no_final() {
+		emailCompleto.setEndereco(" anamaria_123@gmail.com ");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -108,6 +131,12 @@ public class EmailTest {
 	//////////////////////////////////////////////////// TESTE TIPO EMAIL ////////////////////////////////////////////////////
 	@Test
 	public void deve_aceitar_tipo_email() {
+		assertThat(emailCompleto.getTipo(), is("Comercial"));
+	}
+	
+	@Test
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_teste_tipo_email() {
 		assertThat(emailCompleto.getTipo(), is("Comercial"));
 	}
 

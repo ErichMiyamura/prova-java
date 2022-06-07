@@ -16,18 +16,20 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.contmatic.prova.empresa.Produto;
 
 public class ProdutoTest {
 	
-	private static final String RESULTADO_ESPERADO = "Produto [cod=12345678, nome=Computador, valor=1699.99]";
-	private static final String COD = "12345678";
+	private static final String RESULTADO_ESPERADO = "Produto [codigoBarras=1234567891234, nome=Computador, valor=1699.99, quantidade=5]Auditoria [nomeUsuarioCriacao=null, dataCriacao=null, ipCriacao=null, nomeUsuarioAlteracao=null, dataAlteracao=null, ipAlteracao=null]";
+	private static final String CODIGO_BARRAS = "1234567891234";
 	private static final String NOME_PRODUTO = "Computador";
 	private static final String NOME_PRODUTO_2 = "Mouse D.";
 	private static final BigDecimal VALOR = new BigDecimal("4999.99");
 	private static final BigDecimal VALOR_PRODUTO = new BigDecimal("1699.99");
+	private static final Integer QUANTIDADE_PRODUTO = 5;
 	private static final LocalDateTime DATA_CRIACAO = LocalDateTime.of(2022, 04, 18, 12, 00);
 	private static final LocalDateTime DATA_ALTERACAO_HOJE = LocalDateTime.now();
 	
@@ -38,9 +40,9 @@ public class ProdutoTest {
 	
 	@Before 
 	public void setUp() { 
-		produtoCompleto = new Produto("35503089", "Teclado", new BigDecimal("200.0"));
-		produtoCompleto2 = new Produto("12399999", "Mouse", new BigDecimal("50.0"));
-		produtoObrigatorio = new Produto("14775120");
+		produtoCompleto = new Produto("3550308912345", "Teclado", new BigDecimal("200.0"), 1);
+		produtoCompleto2 = new Produto("1239999912345", "Mouse", new BigDecimal("50.0"), 1);
+		produtoObrigatorio = new Produto("1477512098637");
 	}
 	
 	@After 
@@ -59,12 +61,12 @@ public class ProdutoTest {
 	}
 	
 	//////////////////////////////////////////////////// TESTE CONSTRUTOR OBRIGATORIO ////////////////////////////////////////////////////
-	@Test
+	@Test(timeout = 1000)
 	public void deve_verificar_o_construtor_classe_obrigatorio() {
-		Produto p1 = new Produto(COD);
+		Produto p1 = new Produto(CODIGO_BARRAS);
 		
 		assertNotNull(p1);
-		assertEquals(COD, p1.getCodigo());
+		assertEquals(CODIGO_BARRAS, p1.getCodigoBarras());
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -75,68 +77,87 @@ public class ProdutoTest {
 	//////////////////////////////////////////////////// TESTE CONSTRUTOR ////////////////////////////////////////////////////
 	@Test
 	public void deve_verificar_o_construtor_classe() {
-		Produto p1 = new Produto(COD, NOME_PRODUTO, VALOR);
+		Produto p1 = new Produto(CODIGO_BARRAS, NOME_PRODUTO, VALOR, QUANTIDADE_PRODUTO);
 		
 		assertNotNull(p1);
-		assertEquals(COD, p1.getCodigo());
+		assertEquals(CODIGO_BARRAS, p1.getCodigoBarras());
 		assertEquals(NOME_PRODUTO, p1.getNome());
 		assertEquals(VALOR, p1.getValor());
+		assertEquals(QUANTIDADE_PRODUTO, p1.getQuantidade());
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_criar_objeto_produto_com_cod_nulo() {
-		produto = new Produto(null, NOME_PRODUTO, VALOR);
+		produto = new Produto(null, NOME_PRODUTO, VALOR, QUANTIDADE_PRODUTO);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_criar_objeto_produto_com_nome_nulo() {
-		produto = new Produto(COD, null, VALOR);
+		produto = new Produto(CODIGO_BARRAS, null, VALOR, QUANTIDADE_PRODUTO);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_criar_objeto_produto_com_valor_nulo() {
-		produto = new Produto(COD, NOME_PRODUTO, null);
+		produto = new Produto(CODIGO_BARRAS, NOME_PRODUTO, null, QUANTIDADE_PRODUTO);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void nao_deve_criar_objeto_produto_com_quantidade_nulo() {
+		produto = new Produto(CODIGO_BARRAS, NOME_PRODUTO, VALOR, null);
 	}
 	
 	//////////////////////////////////////////////////// TESTE CODIGO ////////////////////////////////////////////////////
 	@Test
 	public void deve_aceitar_cod_com_tamanho_min_8_digitos() {
-		produtoObrigatorio.setCodigo("12345678");
+		produtoObrigatorio.setCodigoBarras("1234567891123");
 	}
 	
 	@Test
-	public void deve_aceitar_cod_com_tamanho_max_14_digitos() {
-		produtoObrigatorio.setCodigo("12345678901234");
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_teste_cod_com_tamanho_min_8_digitos() {
+		produtoObrigatorio.setCodigoBarras("1234567891123");
+	}
+	
+	@Test
+	public void deve_aceitar_cod_com_tamanho_max_13_digitos() {
+		produtoObrigatorio.setCodigoBarras("1234567890124");
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_cod_com_menos_de_8_digitos() {
-		produtoObrigatorio.setCodigo("12345");
+	public void nao_deve_aceitar_cod_com_menos_de_13_digitos() {
+		produtoObrigatorio.setCodigoBarras("12345");
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_cod_com_mais_de_14_digitos() {
-		produtoObrigatorio.setCodigo("12345123451234512345");
+	public void nao_deve_aceitar_cod_com_mais_de_13_digitos() {
+		produtoObrigatorio.setCodigoBarras("12345123451234512345");
 	}
 	
 	@Test(expected = IllegalStateException.class)
 	public void nao_deve_aceitar_letras() {
-		produtoObrigatorio.setCodigo("123teste");
+		produtoObrigatorio.setCodigoBarras("123teste");
 	}
 	
 	@Test(expected = IllegalStateException.class)
 	public void nao_deve_aceitar_caracteres_especiais() {
-		produtoObrigatorio.setCodigo("123_12313");
+		produtoObrigatorio.setCodigoBarras("123_12313");
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_ter_cod_nulo() {
-		produtoObrigatorio.setCodigo(null);
+		produtoObrigatorio.setCodigoBarras(null);
 	}
 	
 	//////////////////////////////////////////////////// TESTE NOME ////////////////////////////////////////////////////
 	@Test
 	public void deve_aceitar_nome() {
+		produtoCompleto.setNome("Sistema Loja");
+		assertThat(produtoCompleto.getNome(), is("Sistema Loja"));
+	}
+	
+	@Test
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_teste_nome() {
 		produtoCompleto.setNome("Sistema Loja");
 		assertThat(produtoCompleto.getNome(), is("Sistema Loja"));
 	}
@@ -193,6 +214,13 @@ public class ProdutoTest {
 		produtoCompleto.setValor(new BigDecimal("3000.0"));
 		assertThat(produtoCompleto.getValor(), is(new BigDecimal("3000.0")));
 	}
+	
+	@Test
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_teste_valor() {
+		produtoCompleto.setValor(new BigDecimal("3000.0"));
+		assertThat(produtoCompleto.getValor(), is(new BigDecimal("3000.0")));
+	}
 
 	@Test
 	public void deve_verificar_que_valores_nao_sao_iguais() {
@@ -222,28 +250,27 @@ public class ProdutoTest {
 	//////////////////////////////////////////////////// TESTE TOSTRING ////////////////////////////////////////////////////
 	@Test
 	public void deve_retornar_cod_nome_valor_no_tostring() {
-		produto = new Produto(COD, NOME_PRODUTO, VALOR_PRODUTO); 
-		System.out.println(produto);
+		produto = new Produto(CODIGO_BARRAS, NOME_PRODUTO, VALOR_PRODUTO, QUANTIDADE_PRODUTO); 
 		assertEquals(RESULTADO_ESPERADO, produto.toString());
 	}
 	
 	@Test
 	public void nao_deve_retornar_cod_nome_valor_no_tostring() {
-		produto = new Produto(COD, NOME_PRODUTO_2, VALOR_PRODUTO); 		
+		produto = new Produto(CODIGO_BARRAS, NOME_PRODUTO_2, VALOR_PRODUTO, QUANTIDADE_PRODUTO); 		
 		assertNotEquals(RESULTADO_ESPERADO, produto.toString());
 	}
 	
 	//////////////////////////////////////////////////// TESTE HASHCODE ////////////////////////////////////////////////////
 	@Test
 	public void devem_ter_hashcode_iguais() {
-		produtoCompleto.setCodigo("12345876");
+		produtoCompleto.setCodigoBarras("1234587612345");
 	    assertEquals(produtoCompleto.hashCode(), produtoCompleto.hashCode());
 	}
 	
 	@Test
 	public void nao_devem_ter_hashcode_iguais() {
-		produtoCompleto.setCodigo("12345876");
-		produtoCompleto2.setCodigo("92345876");
+		produtoCompleto.setCodigoBarras("1234587612345");
+		produtoCompleto2.setCodigoBarras("9234587612345");
 		
 	    assertNotEquals(produtoCompleto.hashCode(), produtoCompleto2.hashCode());
 	}
@@ -251,35 +278,35 @@ public class ProdutoTest {
 	////////////////////////////////////////////////////TESTE EQUALS ////////////////////////////////////////////////////
 	@Test
 	public void equals_deve_retornar_true() {
-		produtoCompleto.setCodigo("12345876");
-		produtoCompleto2.setCodigo("12345876");
+		produtoCompleto.setCodigoBarras("1234587612345");
+		produtoCompleto2.setCodigoBarras("1234587612345");
 		
 		assertTrue(produtoCompleto.equals(produtoCompleto2) && produtoCompleto2.equals(produtoCompleto));
 	}
 	
 	@Test
 	public void equals_deve_retornar_false_codigo_diferente() {
-		produtoCompleto.setCodigo("12345876");
-		produtoCompleto2.setCodigo("92345876");
+		produtoCompleto.setCodigoBarras("1234587612345");
+		produtoCompleto2.setCodigoBarras("9234587612345");
 		
 		assertFalse(produtoCompleto.equals(produtoCompleto2) && produtoCompleto2.equals(produtoCompleto));
 	} 
 	
 	@Test 
 	public void equals_deve_retornar_true_comparacao_com_proprio_objeto() {
-		produtoCompleto.setCodigo("12345876");
+		produtoCompleto.setCodigoBarras("1234587612345");
 		assertTrue(produtoCompleto.equals(produtoCompleto));
 	} 
 	
 	@Test
 	public void equals_deve_retornar_false_comparacao_com_nulo() {
-		produtoCompleto.setCodigo("12345876");
+		produtoCompleto.setCodigoBarras("1234587612345");
 		assertFalse(produtoCompleto.equals(null));
 	} 
 	
 	@Test
 	public void equals_deve_retornar_false_comparacao_com_objeto_de_outra_classe() {
-		produtoCompleto.setCodigo("12345876");
+		produtoCompleto.setCodigoBarras("1234587612345");
 		assertFalse(produtoCompleto.equals(new Object())); 
 	} 
 	

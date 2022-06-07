@@ -7,12 +7,12 @@ import static br.com.contmatic.prova.utils.constantes.CidadeConstantes.CIDADE_NO
 import static br.com.contmatic.prova.utils.constantes.CidadeConstantes.MENSAGEM_CODIGO_IBGE_NULO;
 import static br.com.contmatic.prova.utils.constantes.CidadeConstantes.MENSAGEM_CODIGO_IBGE_TAMANHO;
 import static br.com.contmatic.prova.utils.constantes.CidadeConstantes.MENSAGEM_CODIGO_IBGE_VAZIO;
-import static br.com.contmatic.prova.utils.constantes.CidadeConstantes.MENSAGEM_ESTADO_NULO;
 import static br.com.contmatic.prova.utils.constantes.CidadeConstantes.MENSAGEM_NOME_CARACTER_NUMERICO;
 import static br.com.contmatic.prova.utils.constantes.CidadeConstantes.MENSAGEM_NOME_NULO;
 import static br.com.contmatic.prova.utils.constantes.CidadeConstantes.MENSAGEM_NOME_TAMANHO;
 import static br.com.contmatic.prova.utils.constantes.CidadeConstantes.MENSAGEM_NOME_VAZIO;
 import static br.com.contmatic.prova.utils.constantes.CidadeConstantes.MENSAGEM_REGEX_CODIGO_IBGE;
+import static br.com.contmatic.prova.utils.constantes.CidadeConstantes.MENSAGEM_UF_NULO;
 import static br.com.contmatic.prova.utils.constantes.Regex.REGEX_CARACTER;
 import static br.com.contmatic.prova.utils.constantes.Regex.REGEX_CODIGO;
 import static br.com.contmatic.prova.utils.validacao.Validacao.validarCaracter;
@@ -23,20 +23,20 @@ import static br.com.contmatic.prova.utils.validacao.Validacao.validarVazio;
 
 public class Cidade {
 	
-	private String nome;
-	 
 	private String codigoIbge;
 	
-	private Estado estado; 
+	private String nome;
+	 
+	private Uf uf; 
 	 
 	public Cidade(String codigoIbge) {
 		setCodigoIbge(codigoIbge);
 	} 
 	
-	public Cidade(String nome, String codigoIbge, Estado estado) {  
-		setNome(nome);
+	public Cidade(String codigoIbge, String nome, Uf uf) {  
 		setCodigoIbge(codigoIbge);
-		setEstado(estado);
+		setNome(nome);
+		setUf(uf);
 	}
 	
 	public String getNome() {
@@ -63,13 +63,13 @@ public class Cidade {
 		this.codigoIbge = codigoIbge;
 	}
 	
-	public Estado getEstado() {
-		return estado;
+	public Uf getUf() {
+		return uf;
 	}
 
-	public void setEstado(Estado estado) {
-		validarNulo(estado, MENSAGEM_ESTADO_NULO);
-		this.estado = estado;
+	public void setUf(Uf uf) {
+		validarNulo(uf, MENSAGEM_UF_NULO);
+		this.uf = uf;
 	}
 
 	@Override
@@ -94,9 +94,9 @@ public class Cidade {
 
 	@Override
 	public String toString() {
-		return new StringBuilder().append("Cidade [nome=").append(nome)
-				.append(", codigoIbge=").append(codigoIbge)
-			    .append(", estado=").append(estado)
+		return new StringBuilder().append("Cidade [codigoIbge=").append(codigoIbge)
+				.append(", nome=").append(nome)
+			    .append(", uf=").append(uf)
 			    .append("]")
 			    .toString();
 	}

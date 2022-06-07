@@ -11,7 +11,7 @@ import br.com.contmatic.prova.test.empresa.FuncionarioTest;
 import br.com.contmatic.prova.test.empresa.ProdutoTest;
 import br.com.contmatic.prova.test.endereco.CidadeTest;
 import br.com.contmatic.prova.test.endereco.EnderecoTest;
-import br.com.contmatic.prova.test.endereco.EstadoTest;
+import br.com.contmatic.prova.test.endereco.UfTest;
 
 @RunWith(Suite.class)
 @SuiteClasses(
@@ -20,7 +20,7 @@ import br.com.contmatic.prova.test.endereco.EstadoTest;
 		FuncionarioTest.class, 
 		ProdutoTest.class, 
 		CidadeTest.class, 
-		EstadoTest.class, 
+		UfTest.class, 
 		EmailTest.class, 
 		TelefoneTest.class})
 public final class RunnerTest { 

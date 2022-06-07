@@ -13,26 +13,27 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.contmatic.prova.endereco.Cidade;
-import br.com.contmatic.prova.endereco.Estado;
+import br.com.contmatic.prova.endereco.Uf;
 
 public class CidadeTest {
 	
-	private static final String RESULTADO_ESPERADO = "Cidade [nome=São Paulo, codigoIbge=1234567, estado=Estado [nome=São Paulo, sigla=SP, pais=Brasil]]";
+	private static final String RESULTADO_ESPERADO = "Cidade [codigoIbge=1234567, nome=São Paulo, uf=Uf [codigoIbge=3501004, nome=São Paulo, sigla=SP, pais=Brasil]]";
 	private static final String NOME_CIDADE = "São Paulo";
 	private static final String NOME_CIDADE_2 = "Porto Alegre";
 	private static final String CODIGO_IBGE = "1234567";
 	
 	private Cidade cidade;
 	private Cidade cidadeCompleto;
-	private Estado estado1;
+	private Uf uf1;
 
 	@Before
 	public void setUp() {
-		estado1 = new Estado("São Paulo", "SP", "Brasil");
-		cidadeCompleto = new Cidade("Porto Alegre", "4314902", estado1);
+		uf1 = new Uf("3501004", "São Paulo", "SP", "Brasil");
+		cidadeCompleto = new Cidade("4314902", "Porto Alegre", uf1);
 	}
  
 	@After
@@ -51,7 +52,7 @@ public class CidadeTest {
 	}
 
 	//////////////////////////////////////////////////// TESTE CONSTRUTOR OBRIGATORIOS ////////////////////////////////////////////////////
-	@Test
+	@Test(timeout = 1000)
 	public void deve_verificar_o_construtor_classe_obrigatorio() {
 		Cidade c1 = new Cidade(CODIGO_IBGE);
 
@@ -67,32 +68,39 @@ public class CidadeTest {
 	//////////////////////////////////////////////////// TESTE CONSTRUTOR ////////////////////////////////////////////////////
 	@Test
 	public void deve_verificar_o_construtor_classe() {
-		Cidade c1 = new Cidade(NOME_CIDADE, CODIGO_IBGE, estado1);
+		Cidade c1 = new Cidade(CODIGO_IBGE, NOME_CIDADE, uf1);
 
 		assertNotNull(c1);
-		assertEquals(NOME_CIDADE, c1.getNome());
 		assertEquals(CODIGO_IBGE, c1.getCodigoIbge());
-		assertEquals(estado1, c1.getEstado());
+		assertEquals(NOME_CIDADE, c1.getNome());
+		assertEquals(uf1, c1.getUf());
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void nao_deve_criar_objeto_cidade_com_codigo_ibge_nulo() {
+		cidade = new Cidade(null, NOME_CIDADE, uf1);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_criar_objeto_cidade_com_nome_nulo() {
-		cidade = new Cidade(null, CODIGO_IBGE, estado1);
+		cidade = new Cidade(CODIGO_IBGE, null, uf1);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void nao_deve_criar_objeto_cidade_com_codigo_ibge_nulo() {
-		cidade = new Cidade(NOME_CIDADE, null, estado1);
-	}
-	
-	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_criar_objeto_cidade_com_estado_nulo() {
-		cidade = new Cidade(NOME_CIDADE, CODIGO_IBGE, null);
+		cidade = new Cidade(CODIGO_IBGE, NOME_CIDADE, null);
 	}
 
 	//////////////////////////////////////////////////// TESTE NOME ////////////////////////////////////////////////////
 	@Test
 	public void deve_aceitar_nome() {
+		cidadeCompleto.setNome("Porto Alegre");
+		assertThat(cidadeCompleto.getNome(), is("Porto Alegre"));
+	}
+	
+	@Test
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_teste_nome() {
 		cidadeCompleto.setNome("Porto Alegre");
 		assertThat(cidadeCompleto.getNome(), is("Porto Alegre"));
 	}
@@ -155,6 +163,13 @@ public class CidadeTest {
 	}
 	
 	@Test
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_teste_codigo_ibge() {
+		cidadeCompleto.setCodigoIbge("1934567");
+		assertThat(cidadeCompleto.getCodigoIbge(), is("1934567"));
+	}
+	
+	@Test
 	public void deve_verificar_que_codigo_ibge_nao_sao_iguais() {
 		assertThat(cidadeCompleto.getCodigoIbge(), is(not("1934567")));
 	}
@@ -192,29 +207,35 @@ public class CidadeTest {
 	//////////////////////////////////////////////////// TESTE ESTADO ////////////////////////////////////////////////////
 	@Test
 	public void deve_aceitar_estado(){
-	assertEquals("São Paulo", estado1.getNome());
+	assertEquals("São Paulo", uf1.getNome());
+	}
+	
+	@Test
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_teste_estado(){
+	assertEquals("São Paulo", uf1.getNome());
 	}
 	
 	@Test
 	public void deve_verificar_que_estado_nao_e_o_mesmo() {
-	assertThat(estado1.getNome(), is(not("Rio de Janeiro")));	
+	assertThat(uf1.getNome(), is(not("Rio de Janeiro")));	
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_estado_nulo() {
-		cidadeCompleto.setEstado(null);
+		cidadeCompleto.setUf(null);
 	}
 
 	//////////////////////////////////////////////////// TESTE TOSTRING ////////////////////////////////////////////////////
 	@Test
 	public void deve_retornar_nome_cod_ibge_uf_no_tostring() {
-		cidade = new Cidade(NOME_CIDADE, CODIGO_IBGE, estado1);
+		cidade = new Cidade(CODIGO_IBGE, NOME_CIDADE, uf1);
 		assertEquals(RESULTADO_ESPERADO, cidade.toString());
 	}
 
 	@Test
 	public void nao_deve_retornar_nome_cod_ibge_uf_no_tostring() {
-		cidade = new Cidade(NOME_CIDADE_2, CODIGO_IBGE, estado1);
+		cidade = new Cidade(CODIGO_IBGE, NOME_CIDADE_2, uf1);
 		assertNotEquals(RESULTADO_ESPERADO, cidade.toString());
 	}
 

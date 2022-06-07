@@ -1,6 +1,7 @@
 package br.com.contmatic.prova.utils.validacao;
 
 import static java.time.LocalDate.now;
+import static java.time.temporal.ChronoUnit.YEARS;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -38,7 +39,7 @@ public final class ValidacaoData {
 	
 	public static void validarDataAntiga(LocalDateTime data, int intervaloMaxAnos, String mensagem) {
 		final LocalDateTime agora = LocalDateTime.now();
-		long anos = ChronoUnit.YEARS.between(data, agora);
+		long anos = YEARS.between(data, agora);
 		if (anos > intervaloMaxAnos) {
 			throw new IllegalStateException(mensagem); 
 		}
@@ -80,9 +81,14 @@ public final class ValidacaoData {
 	}
 	
 	// VALIDAÇÃO DATA CRIACAO/ALTERACAO//
-	// TODO verificar esta validacao
-	public static void validarDataIsBefore(LocalDateTime data, int intervaloMaxAnos, String mensagem) {
-		final LocalDateTime dataAgora = LocalDateTime.now();
+	public static void validarDataAnterior(LocalDateTime dataA, LocalDateTime dataB, String mensagem) {
+		if (dataA.isBefore(dataB)) {
+			throw new IllegalStateException(mensagem); 
+		}
+	}
+	
+	public static void validarDataAnterior(LocalDate data, int intervaloMaxAnos, String mensagem) {
+		final LocalDate dataAgora = now();
 		long anos = ChronoUnit.YEARS.between(data, dataAgora);
 		if (data.isBefore(dataAgora) && anos > intervaloMaxAnos) {
 			throw new IllegalStateException(mensagem); 

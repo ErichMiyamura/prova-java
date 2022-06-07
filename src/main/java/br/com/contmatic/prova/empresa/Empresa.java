@@ -45,30 +45,30 @@ import br.com.contmatic.prova.endereco.Endereco;
 
 public class Empresa extends Auditoria {
 	
+	private String cnpj;
+	
 	private String razaoSocial; 
 	
 	private String nomeFantasia;
 	
-	private String cnpj;	
+	private List<Telefone> telefones;
 	
-	private List<Telefone> telefone;
+	private List<Email> emails;
 	
 	private List<Endereco> enderecos;
 	
 	private List<Funcionario> funcionarios;
 	
-	private List<Email> email;
-	
 	public Empresa(String cnpj) { 
 		setCnpj(cnpj); 
 	}
 
-	public Empresa(String razaoSocial, String nomeFantasia, String cnpj, List<Telefone> telefone, List<Email> email, List<Endereco> enderecos, List<Funcionario> funcionarios) {
+	public Empresa(String cnpj, String razaoSocial, String nomeFantasia, List<Telefone> telefone, List<Email> email, List<Endereco> enderecos, List<Funcionario> funcionarios) {
+		setCnpj(cnpj); 
 		setRazaoSocial(razaoSocial);
 		setNomeFantasia(nomeFantasia);
-		setCnpj(cnpj); 
-		setTelefone(telefone);
-		setEmail(email); 
+		setTelefones(telefone);
+		setEmails(email); 
 		setEnderecos(enderecos);
 		setFuncionarios(funcionarios);
 	}
@@ -106,14 +106,14 @@ public class Empresa extends Auditoria {
 		this.cnpj = cnpj; 
 	}
 	
-	public List<Telefone> getTelefone() {
-		return telefone;
+	public List<Telefone> getTelefones() {
+		return telefones;
 	}
 
-	public void setTelefone(List<Telefone> telefone) {
-		validarNulo(telefone, MENSAGEM_LISTA_TELEFONE_NULO);
-		validarTamanhoLista(telefone, EMPRESA_LISTA_TELEFONE_TAMANHO_MINIMO, EMPRESA_LISTA_TELEFONE_TAMANHO_MAXIMO, MENSAGEM_LISTA_TELEFONE_TAMANHO);
-		this.telefone = telefone;
+	public void setTelefones(List<Telefone> telefones) {
+		validarNulo(telefones, MENSAGEM_LISTA_TELEFONE_NULO);
+		validarTamanhoLista(telefones, EMPRESA_LISTA_TELEFONE_TAMANHO_MINIMO, EMPRESA_LISTA_TELEFONE_TAMANHO_MAXIMO, MENSAGEM_LISTA_TELEFONE_TAMANHO);
+		this.telefones = telefones;
 	}
 
 	public List<Endereco> getEnderecos() {
@@ -136,14 +136,14 @@ public class Empresa extends Auditoria {
 		this.funcionarios = funcionarios; 
 	}
 	
-	public List<Email> getEmail() {
-		return email;
+	public List<Email> getEmails() {
+		return emails;
 	}
 	
-	public void setEmail(List<Email> email) {
-		validarNulo(email, MENSAGEM_LISTA_EMAIL_NULO);
-		validarTamanhoLista(email, EMPRESA_LISTA_EMAIL_TAMANHO_MINIMO, EMPRESA_LISTA_EMAIL_TAMANHO_MAXIMO, MENSAGEM_LISTA_EMAIL_TAMANHO); 
-		this.email = email;
+	public void setEmails(List<Email> emails) {
+		validarNulo(emails, MENSAGEM_LISTA_EMAIL_NULO);
+		validarTamanhoLista(emails, EMPRESA_LISTA_EMAIL_TAMANHO_MINIMO, EMPRESA_LISTA_EMAIL_TAMANHO_MAXIMO, MENSAGEM_LISTA_EMAIL_TAMANHO); 
+		this.emails = emails;
 	}
 
 	@Override
@@ -165,14 +165,15 @@ public class Empresa extends Auditoria {
 
 	@Override
 	public String toString() {
-		return new StringBuilder().append("Empresa [razaoSocial=").append(razaoSocial)
-				.append(", nomeFantasia=").append(nomeFantasia)
-			    .append(", cnpj=").append(cnpj)
-			    .append(", telefone=").append(telefone)
-			    .append(", email=").append(email)
+		return new StringBuilder().append("Empresa [cnpj=").append(cnpj)
+				.append(", razaoSocial=").append(razaoSocial)
+			    .append(", nomeFantasia=").append(nomeFantasia)
+			    .append(", telefones=").append(telefones)
+			    .append(", emails=").append(emails)
 			    .append(", enderecos=").append(enderecos)
 			    .append(", funcionarios=").append(funcionarios)
 			    .append("]")
+			    .append(super.toString())
 			    .toString();
 	}
 	

@@ -20,6 +20,7 @@ public class FuncionarioConstantes {
 	public static final int FUNCIONARIO_DATA_ADMISSAO_INTERVALO_ANO_ANTIGO = 120;
 	// DATA ENCERRAMENTO
 	public static final int FUNCIONARIO_DATA_ENCERRAMENTO_INTERVALO_ANO_ANTIGO = 120;
+	public static final int FUNCIONARIO_DATA_ENCERRAMENTO_INTERVALO_MINIMO_DATA_ADMISSAO = 1;
 	// SALARIO
 	public static final float FUNCIONARIO_SALARIO_MINIMO = 1192.40f;
 	public static final float FUNCIONARIO_SALARIO_MAXIMO = 999999.99f;
@@ -42,6 +43,8 @@ public class FuncionarioConstantes {
 	// DATA ENCERRAMENTO
 	public static final String MENSAGEM_DATA_ENCERRAMENTO_NULO = "Data de Encerramento não pode estar em branco.";
 	public static final String MENSAGEM_DATA_ENCERRAMENTO_ATUAL = "Data de Encerramento não pode ser anterior e posterior à hoje.";
+	public static final String MENSAGEM_DATA_ENCERRAMENTO_ANTERIOR_A_DATA_ADMISSAO = "Data Encerramento Contrato não deve ser anterior a Data de Admissão.";
+	public static final String MENSAGEM_DATA_ENCERRAMENTO_PRE_REQUISITO = "Data Encerramento Contrato não deve existir se Data Admissão for nula";
 	public static final String MENSAGEM_DATA_ENCERRAMENTO_ANO_ANTIGO = "Data de Encerramento não pode ser anterior à " + FUNCIONARIO_DATA_ENCERRAMENTO_INTERVALO_ANO_ANTIGO + " anos.";
 	// TELEFONE
 	public static final String MENSAGEM_LISTA_TELEFONE_NULO = "Telefone não pode ter lista em branco.";

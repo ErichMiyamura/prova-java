@@ -3,18 +3,21 @@ package br.com.contmatic.prova.utils.constantes;
 public class ProdutoConstantes {
 
 	// numericos
-	// CODIGO
-	public static final int PRODUTO_CODIGO_TAMANHO_MINIMO = 8;
-	public static final int PRODUTO_CODIGO_TAMANHO_MAXIMO = 14;
+	// CODIGO DE BARRAS
+	public static final int PRODUTO_CODIGO_TAMANHO_MINIMO = 13;
+	public static final int PRODUTO_CODIGO_TAMANHO_MAXIMO = 13;
 	// NOME
 	public static final int PRODUTO_NOME_TAMANHO_MINIMO = 3;
 	public static final int PRODUTO_NOME_TAMANHO_MAXIMO = 60;
 	// VALOR
 	public static final float PRODUTO_VALOR_MINIMO = 9.99f;
 	public static final float PRODUTO_VALOR_MAXIMO = 999999.99f;
+	// QUANTIDADE
+	public static final int PRODUTO_QUANTIDADE_TAMANHO_MINIMO = 1;
+	public static final int PRODUTO_QUANTIDADE_TAMANHO_MAXIMO = 9999999;
 
 	// mensagens
-	// CODIGO
+	// CODIGO DE BARRAS
 	public static final String MENSAGEM_CODIGO_NULO = "Código do produto não pode estar em branco.";
 	public static final String MENSAGEM_CODIGO_TAMANHO = "Código deve ter no mínimo " + PRODUTO_CODIGO_TAMANHO_MINIMO + " e no máximo " + PRODUTO_CODIGO_TAMANHO_MAXIMO + " caracteres numéricos";
 	public static final String MENSAGEM_REGEX_CODIGO = "Código deve ter somente números";
@@ -30,6 +33,9 @@ public class ProdutoConstantes {
 	public static final String MENSAGEM_VALOR_TAMANHO_MIN = "Valor do produto possui valor menor que o mínimo permitido.";
 	public static final String MENSAGEM_VALOR_TAMANHO_MAX = "Valor do produto possui valor maior que o máximo permitido.";
 	public static final String MENSAGEM_VALOR_TAMANHO = "Valor deve ter no mínimo " + PRODUTO_VALOR_MINIMO + " e no máximo " + PRODUTO_VALOR_MAXIMO;
+	// QUANTIDADE
+	public static final String MENSAGEM_QUANTIDADE_NULO = "Quantidade do produto não pode estar em branco.";
+	public static final String MENSAGEM_QUANTIDADE_TAMANHO = "Quantidade do produto deve ser no mínimo " + PRODUTO_QUANTIDADE_TAMANHO_MINIMO + " e no máximo " + PRODUTO_QUANTIDADE_TAMANHO_MAXIMO;
 
 	private ProdutoConstantes() {
 	}

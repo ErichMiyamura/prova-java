@@ -1,6 +1,6 @@
 package br.com.contmatic.prova.utils.constantes;
 
-public class AuditoriaConstantes {
+public final class AuditoriaConstantes {
 	
 	// numericos
 	// NOME USUARIO CRIACAO

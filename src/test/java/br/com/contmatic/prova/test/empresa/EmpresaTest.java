@@ -17,6 +17,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.contmatic.prova.contato.Email;
@@ -27,7 +28,7 @@ import br.com.contmatic.prova.endereco.Endereco;
 
 public class EmpresaTest {
 	
-	private static final String RESULTADO_ESPERADO = "Empresa [razaoSocial=Top Photos, nomeFantasia=Photoshop, cnpj=83699173000177, telefone=[Telefone [ddi=+55, ddd=11, numero=22334455, tipo=Comercial], Telefone [ddi=+55, ddd=11, numero=999999999, tipo=Comercial], Telefone [ddi=+55, ddd=11, numero=977775555, tipo=Comercial]], email=[Email [enderecoEmail=erich@gmail.com, tipo=null], Email [enderecoEmail=erich@gmail.com, tipo=null], Email [enderecoEmail=erich@gmail.com, tipo=null]], enderecos=[Endereco [rua=null, numero=1, complemento=null, cep=04117010, cidade=null], Endereco [rua=null, numero=2, complemento=null, cep=02728000, cidade=null], Endereco [rua=null, numero=3, complemento=null, cep=05208060, cidade=null]], funcionarios=[Funcionario [nome=Erich, dataNascimento=null, telefone=null, email=null, cpf=17255071023, endereco=null, salario=null, cargo=null, empresa=null], Funcionario [nome=Marco, dataNascimento=null, telefone=null, email=null, cpf=17255071023, endereco=null, salario=null, cargo=null, empresa=null], Funcionario [nome=João, dataNascimento=null, telefone=null, email=null, cpf=17255071023, endereco=null, salario=null, cargo=null, empresa=null], Funcionario [nome=Maria, dataNascimento=null, telefone=null, email=null, cpf=17255071023, endereco=null, salario=null, cargo=null, empresa=null]]]";
+	private static final String RESULTADO_ESPERADO = "Empresa [cnpj=04781062000139, razaoSocial=Top Photos, nomeFantasia=Photoshop, telefones=[Telefone [ddi=+55, ddd=11, numero=22334455, tipo=Comercial], Telefone [ddi=+55, ddd=11, numero=999999999, tipo=Comercial], Telefone [ddi=+55, ddd=11, numero=977775555, tipo=Comercial]], emails=[Email [endereco=erich@gmail.com, tipo=null], Email [endereco=erich@gmail.com, tipo=null], Email [endereco=erich@gmail.com, tipo=null]], enderecos=[Endereco [cep=04117010, numero=1, logradouro=null, tipoLogradouro=null, bairro=null, complemento=null, cidade=null], Endereco [cep=02728000, numero=2, logradouro=null, tipoLogradouro=null, bairro=null, complemento=null, cidade=null], Endereco [cep=05208060, numero=3, logradouro=null, tipoLogradouro=null, bairro=null, complemento=null, cidade=null]], funcionarios=[Funcionario [cpf=17255071023, empresa=Empresa [cnpj=65141186000144, razaoSocial=null, nomeFantasia=null, telefones=null, emails=null, enderecos=null, funcionarios=null]Auditoria [nomeUsuarioCriacao=null, dataCriacao=null, ipCriacao=null, nomeUsuarioAlteracao=null, dataAlteracao=null, ipAlteracao=null], nome=Erich, dataNascimento=null, dataAdmissao=null, dataEncerramentoContrato=null, cargo=null, salario=null, endereco=null, telefones=null, emails=null]Auditoria [nomeUsuarioCriacao=null, dataCriacao=null, ipCriacao=null, nomeUsuarioAlteracao=null, dataAlteracao=null, ipAlteracao=null], Funcionario [cpf=17255071023, empresa=Empresa [cnpj=65141186000144, razaoSocial=null, nomeFantasia=null, telefones=null, emails=null, enderecos=null, funcionarios=null]Auditoria [nomeUsuarioCriacao=null, dataCriacao=null, ipCriacao=null, nomeUsuarioAlteracao=null, dataAlteracao=null, ipAlteracao=null], nome=Marco, dataNascimento=null, dataAdmissao=null, dataEncerramentoContrato=null, cargo=null, salario=null, endereco=null, telefones=null, emails=null]Auditoria [nomeUsuarioCriacao=null, dataCriacao=null, ipCriacao=null, nomeUsuarioAlteracao=null, dataAlteracao=null, ipAlteracao=null], Funcionario [cpf=17255071023, empresa=Empresa [cnpj=65141186000144, razaoSocial=null, nomeFantasia=null, telefones=null, emails=null, enderecos=null, funcionarios=null]Auditoria [nomeUsuarioCriacao=null, dataCriacao=null, ipCriacao=null, nomeUsuarioAlteracao=null, dataAlteracao=null, ipAlteracao=null], nome=João, dataNascimento=null, dataAdmissao=null, dataEncerramentoContrato=null, cargo=null, salario=null, endereco=null, telefones=null, emails=null]Auditoria [nomeUsuarioCriacao=null, dataCriacao=null, ipCriacao=null, nomeUsuarioAlteracao=null, dataAlteracao=null, ipAlteracao=null], Funcionario [cpf=17255071023, empresa=Empresa [cnpj=65141186000144, razaoSocial=null, nomeFantasia=null, telefones=null, emails=null, enderecos=null, funcionarios=null]Auditoria [nomeUsuarioCriacao=null, dataCriacao=null, ipCriacao=null, nomeUsuarioAlteracao=null, dataAlteracao=null, ipAlteracao=null], nome=Maria, dataNascimento=null, dataAdmissao=null, dataEncerramentoContrato=null, cargo=null, salario=null, endereco=null, telefones=null, emails=null]Auditoria [nomeUsuarioCriacao=null, dataCriacao=null, ipCriacao=null, nomeUsuarioAlteracao=null, dataAlteracao=null, ipAlteracao=null]]]Auditoria [nomeUsuarioCriacao=null, dataCriacao=null, ipCriacao=null, nomeUsuarioAlteracao=null, dataAlteracao=null, ipAlteracao=null]";
 	private static final String RAZAO_SOCIAL = "Top Photos";
 	private static final String RAZAO_SOCIAL_2 = "Top S. Photos LTDA.";
 	private static final String NOME_FANTASIA = "Photoshop";
@@ -37,10 +38,10 @@ public class EmpresaTest {
 	private static final LocalDateTime DATA_CRIACAO = LocalDateTime.of(2022, 04, 18, 12, 00);
 	private static final LocalDateTime DATA_ALTERACAO_HOJE = LocalDateTime.now();
 	
-	private List<Telefone> telefone;
-	private List<Telefone> telefone2; 
-	private List<Email> email;
-	private List<Email> email2;
+	private List<Telefone> telefones;
+	private List<Telefone> telefones2; 
+	private List<Email> emails;
+	private List<Email> emails2;
 	private List<Endereco> enderecos;
 	private List<Endereco> enderecos2;
 	private List<Funcionario> funcionarios;
@@ -52,34 +53,36 @@ public class EmpresaTest {
 	
 	@Before
 	public void setUp() {  
-		telefone = new ArrayList<Telefone>(); 
-		telefone.add(new Telefone("+55", "11", "22334455", "Comercial"));
-		telefone.add(new Telefone("+55", "11", "999999999", "Comercial"));
-		telefone.add(new Telefone("+55", "11", "977775555", "Comercial"));
+		empresa = new Empresa("65141186000144");
 		
-		email = new ArrayList<Email>();
-		email.add(new Email("erich@gmail.com"));
-		email.add(new Email("erich@gmail.com"));
-		email.add(new Email("erich@gmail.com"));
+		telefones = new ArrayList<Telefone>(); 
+		telefones.add(new Telefone("+55", "11", "22334455", "Comercial"));
+		telefones.add(new Telefone("+55", "11", "999999999", "Comercial"));
+		telefones.add(new Telefone("+55", "11", "977775555", "Comercial"));
+		
+		emails = new ArrayList<Email>();
+		emails.add(new Email("erich@gmail.com"));
+		emails.add(new Email("erich@gmail.com"));
+		emails.add(new Email("erich@gmail.com"));
 		
 		enderecos = new ArrayList<Endereco>();
-		enderecos.add(new Endereco(1, "04117010"));
-		enderecos.add(new Endereco(2, "02728000"));
-		enderecos.add(new Endereco(3, "05208060"));
+		enderecos.add(new Endereco("04117010", 1));
+		enderecos.add(new Endereco("02728000", 2));
+		enderecos.add(new Endereco("05208060", 3));
 		
 		funcionarios = new ArrayList<Funcionario>();
-		funcionarios.add(new Funcionario("17255071023", "Erich"));
-		funcionarios.add(new Funcionario("17255071023", "Marco"));
-		funcionarios.add(new Funcionario("17255071023", "João"));
-		funcionarios.add(new Funcionario("17255071023", "Maria"));
+		funcionarios.add(new Funcionario("17255071023", empresa, "Erich"));
+		funcionarios.add(new Funcionario("17255071023", empresa, "Marco"));
+		funcionarios.add(new Funcionario("17255071023", empresa, "João"));
+		funcionarios.add(new Funcionario("17255071023", empresa, "Maria"));
 		
-		telefone2 = new ArrayList<Telefone>();
-		email2 = new ArrayList<Email>();
+		telefones2 = new ArrayList<Telefone>();
+		emails2 = new ArrayList<Email>();
 		enderecos2 = new ArrayList<Endereco>(); 
 		funcionarios2 = new ArrayList<Funcionario>(); 
 		empresaObrigatorio = new Empresa("65141186000144");
-		empresaCompleto = new Empresa("Escritório de Software", "DevStyle", "79946237000110", telefone, email, enderecos, funcionarios);
-		empresaCompleto2 = new Empresa("Escritório de fotos", "Top Photos", "49445772000126", telefone, email, enderecos, funcionarios);
+		empresaCompleto = new Empresa("79946237000110", "Escritório de Carros", "Top Cars", telefones, emails, enderecos, funcionarios);
+		empresaCompleto2 = new Empresa("49445772000126", "Escritório de fotos", "Top Photos", telefones, emails, enderecos, funcionarios);
 	}
 	
 	@After 
@@ -98,12 +101,12 @@ public class EmpresaTest {
 	}
 	
 	//////////////////////////////////////////////////// TESTE CONSTRUTOR OBRIGATORIOS ////////////////////////////////////////////////////
-	@Test
+	@Test(timeout = 1000)
 	public void deve_verificar_o_construtor_classe_obrigatorio() {
-		Empresa emp1 = new Empresa(CNPJ_EMPRESA);
+		Empresa e1 = new Empresa(CNPJ_EMPRESA);
 		
-		assertNotNull(emp1);
-		assertEquals(CNPJ_EMPRESA, emp1.getCnpj());
+		assertNotNull(e1);
+		assertEquals(CNPJ_EMPRESA, e1.getCnpj());
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -114,58 +117,65 @@ public class EmpresaTest {
 	//////////////////////////////////////////////////// TESTE CONSTRUTOR ////////////////////////////////////////////////////
 	@Test
 	public void deve_verificar_o_construtor_classe() {
-		Empresa e1 = new Empresa(RAZAO_SOCIAL, NOME_FANTASIA, CNPJ_EMPRESA, telefone, email, enderecos, funcionarios);
+		Empresa e1 = new Empresa(CNPJ_EMPRESA, RAZAO_SOCIAL, NOME_FANTASIA, telefones, emails, enderecos, funcionarios);
 		
 		assertNotNull(e1);
+		assertEquals(CNPJ_EMPRESA, e1.getCnpj());
 		assertEquals(RAZAO_SOCIAL, e1.getRazaoSocial());
 		assertEquals(NOME_FANTASIA, e1.getNomeFantasia());
-		assertEquals(CNPJ_EMPRESA, e1.getCnpj());
-		assertEquals(telefone, e1.getTelefone());
-		assertEquals(email, e1.getEmail());
+		assertEquals(telefones, e1.getTelefones());
+		assertEquals(emails, e1.getEmails());
 		assertEquals(enderecos, e1.getEnderecos());
 		assertEquals(funcionarios, e1.getFuncionarios());
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
+	public void nao_deve_criar_objeto_empresa_com_cnpj_nulo() {
+		empresa = new Empresa(null, RAZAO_SOCIAL, NOME_FANTASIA, telefones, emails, enderecos, funcionarios);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_criar_objeto_empresa_com_razao_social_nulo() {
-		empresa = new Empresa(null, NOME_FANTASIA, CNPJ_EMPRESA, telefone, email, enderecos, funcionarios);
+		empresa = new Empresa(CNPJ_EMPRESA, null, NOME_FANTASIA, telefones, emails, enderecos, funcionarios);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_criar_objeto_empresa_com_nome_fantasia_nulo() {
-		empresa = new Empresa(RAZAO_SOCIAL, null, CNPJ_EMPRESA, telefone, email, enderecos, funcionarios);
+		empresa = new Empresa(CNPJ_EMPRESA, RAZAO_SOCIAL, null, telefones, emails, enderecos, funcionarios);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void nao_deve_criar_objeto_empresa_com_cnpj_nulo() {
-		empresa = new Empresa(RAZAO_SOCIAL, NOME_FANTASIA, null, telefone, email, enderecos, funcionarios);
+	public void nao_deve_criar_objeto_empresa_com_telefones_nulo() {
+		empresa = new Empresa(CNPJ_EMPRESA, RAZAO_SOCIAL, NOME_FANTASIA, null, emails, enderecos, funcionarios);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void nao_deve_criar_objeto_empresa_com_telefone_nulo() {
-		empresa = new Empresa(RAZAO_SOCIAL, NOME_FANTASIA, CNPJ_EMPRESA, null, email, enderecos, funcionarios);
+	public void nao_deve_criar_objeto_empresa_com_emails_nulo() {
+		empresa = new Empresa(CNPJ_EMPRESA, RAZAO_SOCIAL, NOME_FANTASIA, telefones, null, enderecos, funcionarios);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void nao_deve_criar_objeto_empresa_com_email_nulo() {
-		empresa = new Empresa(RAZAO_SOCIAL, NOME_FANTASIA, CNPJ_EMPRESA, telefone, null, enderecos, funcionarios);
+	public void nao_deve_criar_objeto_empresa_com_enderecos_nulo() {
+		empresa = new Empresa(CNPJ_EMPRESA, RAZAO_SOCIAL, NOME_FANTASIA, telefones, emails, null, funcionarios);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void nao_deve_criar_objeto_empresa_com_endereco_nulo() {
-		empresa = new Empresa(RAZAO_SOCIAL, NOME_FANTASIA, CNPJ_EMPRESA, telefone, email, null, funcionarios);
-	}
-	
-	@Test(expected = IllegalArgumentException.class)
-	public void nao_deve_criar_objeto_empresa_com_funcionario_nulo() {
-		empresa = new Empresa(RAZAO_SOCIAL, NOME_FANTASIA, CNPJ_EMPRESA, telefone, email, enderecos, null);
+	public void nao_deve_criar_objeto_empresa_com_funcionarios_nulo() {
+		empresa = new Empresa(CNPJ_EMPRESA, RAZAO_SOCIAL, NOME_FANTASIA, telefones, emails, enderecos, null);
 	}
 	
 	//////////////////////////////////////////////////// TESTE RAZAO SOCIAL ////////////////////////////////////////////////////
 	@Test
 	public void deve_aceitar_razao_social() {
 		empresaCompleto.getRazaoSocial();
-		assertThat(empresaCompleto.getRazaoSocial(), is("Escritório de Software"));	
+		assertThat(empresaCompleto.getRazaoSocial(), is("Escritório de Carros"));	
+	}
+	
+	@Test
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_teste_razao_social() {
+		empresaCompleto.getRazaoSocial();
+		assertThat(empresaCompleto.getRazaoSocial(), is("Escritório de Carros"));	
 	}
 	
 	@Test
@@ -230,7 +240,14 @@ public class EmpresaTest {
 	@Test
 	public void deve_aceitar_nome_fantasia() {
 		empresaCompleto.getNomeFantasia();
-		assertThat(empresaCompleto.getNomeFantasia(), is("DevStyle"));	
+		assertThat(empresaCompleto.getNomeFantasia(), is("Top Cars"));	
+	}
+	
+	@Test
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_teste_nome_fantasia() {
+		empresaCompleto.getNomeFantasia();
+		assertThat(empresaCompleto.getNomeFantasia(), is("Top Cars"));	
 	}
 	
 	@Test
@@ -294,6 +311,13 @@ public class EmpresaTest {
 	//////////////////////////////////////////////////// TESTE CNPJ ////////////////////////////////////////////////////
 	@Test
 	public void deve_verificar_se_e_o_mesmo_cnpj() {
+		empresaObrigatorio.setCnpj("50449092000160");
+		assertEquals(empresaObrigatorio, empresaObrigatorio);	
+	}
+	
+	@Test
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_teste_se_e_o_mesmo_cnpj() {
 		empresaObrigatorio.setCnpj("50449092000160");
 		assertEquals(empresaObrigatorio, empresaObrigatorio);	
 	}
@@ -387,91 +411,126 @@ public class EmpresaTest {
 	//////////////////////////////////////////////////// TESTE LISTA TELEFONE ////////////////////////////////////////////////////
 	@Test
 	public void deve_aceitar_lista_de_telefone_com_tamanho_3() {
-		telefone2.add(new Telefone("+55", "11", "988932333"));
-		telefone2.add(new Telefone("+55", "11", "999999999"));
-		telefone2.add(new Telefone("+55", "11", "977775555"));
+		telefones2.add(new Telefone("+55", "11", "988932333"));
+		telefones2.add(new Telefone("+55", "11", "999999999"));
+		telefones2.add(new Telefone("+55", "11", "977775555"));
 		
-		empresaCompleto.setTelefone(telefone2);
-		assertNotNull(empresaCompleto.getTelefone());
-		assertEquals(3, empresaCompleto.getTelefone().size());
+		empresaCompleto.setTelefones(telefones2);
+		assertNotNull(empresaCompleto.getTelefones());
+		assertEquals(3, empresaCompleto.getTelefones().size());
+	}
+	
+	@Test
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_teste_lista_de_telefone_com_tamanho_3() {
+		telefones2.add(new Telefone("+55", "11", "988932333"));
+		telefones2.add(new Telefone("+55", "11", "999999999"));
+		telefones2.add(new Telefone("+55", "11", "977775555"));
+		
+		empresaCompleto.setTelefones(telefones2);
+		assertNotNull(empresaCompleto.getTelefones());
+		assertEquals(3, empresaCompleto.getTelefones().size());
 	}
 	
 	@Test
 	public void deve_aceitar_lista_de_telefone_com_tamanho_4() {
 		for (int i = 0; i < 4; i++) {
-			telefone2.add(new Telefone("+55", "22", "985936133"));
+			telefones2.add(new Telefone("+55", "22", "985936133"));
 		}
-		empresaCompleto.setTelefone(telefone2);
+		empresaCompleto.setTelefones(telefones2);
 		
-		assertNotNull(empresaCompleto.getTelefone());
-		assertEquals(4, empresaCompleto.getTelefone().size());
+		assertNotNull(empresaCompleto.getTelefones());
+		assertEquals(4, empresaCompleto.getTelefones().size());
 	} 
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_lista_de_telefone_nulo() {
-		empresaCompleto.setTelefone(null);
+		empresaCompleto.setTelefones(null);
 	}
 	
 	@Test(expected = IllegalStateException.class)
 	public void nao_deve_aceitar_lista_de_telefone_com_tamanho_menor_que_2() {
-		telefone2.add(new Telefone("+55", "22", "985936133"));
-		empresaCompleto.setTelefone(telefone2);
+		telefones2.add(new Telefone("+55", "22", "985936133"));
+		empresaCompleto.setTelefones(telefones2);
 	}
 	
 	@Test(expected = IllegalStateException.class)
 	public void nao_deve_aceitar_lista_de_telefone_com_tamanho_maior_que_4() {
 		for (int i = 0; i <= 5; i++) {
-			telefone2.add(new Telefone("+55", "22", "985936133"));
+			telefones2.add(new Telefone("+55", "22", "985936133"));
 		}
-		empresaCompleto.setTelefone(telefone2);
+		empresaCompleto.setTelefones(telefones2);
 	}
 	
 	//////////////////////////////////////////////////// TESTE LISTA EMAIL ////////////////////////////////////////////////////
 	@Test
 	public void deve_aceitar_lista_de_email_com_tamanho_2() {
-		email2.add(new Email("erich@gmail.com"));
-		email2.add(new Email("erich@gmail.com"));
+		emails2.add(new Email("erich@gmail.com"));
+		emails2.add(new Email("erich@gmail.com"));
 
-		empresaCompleto.setEmail(email2);
-		assertNotNull(empresaCompleto.getEmail());
-		assertEquals(2, empresaCompleto.getEmail().size());
+		empresaCompleto.setEmails(emails2);
+		assertNotNull(empresaCompleto.getEmails());
+		assertEquals(2, empresaCompleto.getEmails().size());
+	}
+	
+	@Test
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_teste_lista_de_email_com_tamanho_2() {
+		emails2.add(new Email("erich@gmail.com"));
+		emails2.add(new Email("erich@gmail.com"));
+
+		empresaCompleto.setEmails(emails2);
+		assertNotNull(empresaCompleto.getEmails());
+		assertEquals(2, empresaCompleto.getEmails().size());
 	}
 
 	@Test
 	public void deve_aceitar_lista_de_email_com_tamanho_3() {
 		for (int i = 0; i < 3; i++) {
-			email2.add(new Email("erich@gmail.com"));
+			emails2.add(new Email("erich@gmail.com"));
 		}
-		empresaCompleto.setEmail(email2);
-		assertNotNull(empresaCompleto.getEmail());
-		assertEquals(3, empresaCompleto.getEmail().size());
+		empresaCompleto.setEmails(emails2);
+		assertNotNull(empresaCompleto.getEmails());
+		assertEquals(3, empresaCompleto.getEmails().size());
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void nao_deve_aceitar_lista_de_email_nulo() {
-		empresaCompleto.setEmail(null);
+		empresaCompleto.setEmails(null);
 	}
 
 	@Test(expected = IllegalStateException.class)
 	public void nao_deve_aceitar_lista_de_email_com_tamanho_menor_que_2() {
-		email2.add(new Email("erich@gmail.com"));
-		empresaCompleto.setEmail(email2);
+		emails2.add(new Email("erich@gmail.com"));
+		empresaCompleto.setEmails(emails2);
 	}
 
 	@Test(expected = IllegalStateException.class)
 	public void nao_deve_aceitar_lista_de_email_com_tamanho_maior_que_3() {
 		for (int i = 0; i <= 5; i++) {
-			email2.add(new Email("erich@gmail.com"));
+			emails2.add(new Email("erich@gmail.com"));
 		}
-		empresaCompleto.setEmail(email2);
+		empresaCompleto.setEmails(emails2);
 	}
 	 
 	//////////////////////////////////////////////////// TESTE LISTA ENDERECO ////////////////////////////////////////////////////
 	@Test
 	public void deve_aceitar_lista_de_enderecos_com_tamanho_3() {
-		enderecos2.add(new Endereco(1, "04117010"));
-		enderecos2.add(new Endereco(2, "02728000"));
-		enderecos2.add(new Endereco(3, "05208060"));
+		enderecos2.add(new Endereco("04117010", 1));
+		enderecos2.add(new Endereco("02728000",2));
+		enderecos2.add(new Endereco("05208060", 3));
+		
+		empresaCompleto.setEnderecos(enderecos);
+		assertNotNull(empresaCompleto.getEnderecos());
+		assertEquals(3, empresaCompleto.getEnderecos().size());
+	}
+	
+	@Test
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_teste_lista_de_enderecos_com_tamanho_3() {
+		enderecos2.add(new Endereco("04117010", 1));
+		enderecos2.add(new Endereco("02728000",2));
+		enderecos2.add(new Endereco("05208060", 3));
 		
 		empresaCompleto.setEnderecos(enderecos);
 		assertNotNull(empresaCompleto.getEnderecos());
@@ -481,7 +540,7 @@ public class EmpresaTest {
 	@Test
 	public void deve_aceitar_lista_de_enderecos_com_tamanho_5() {
 		for (int i = 0; i < 5; i++) {
-			enderecos2.add(new Endereco(1, "04117010"));
+			enderecos2.add(new Endereco("04117010", 1));
 		}
 		empresaCompleto.setEnderecos(enderecos2);
 		
@@ -496,14 +555,14 @@ public class EmpresaTest {
 	
 	@Test(expected = IllegalStateException.class)
 	public void nao_deve_aceitar_lista_de_enderecos_com_tamanho_menor_que_2() {
-		enderecos2.add(new Endereco(3, "05208060"));
+		enderecos2.add(new Endereco("05208060", 3));
 		empresaCompleto.setEnderecos(enderecos2);
 	}
 	
 	@Test(expected = IllegalStateException.class)
 	public void nao_deve_aceitar_lista_de_enderecos_com_tamanho_maior_que_5() {
 		for (int i = 0; i <= 5; i++) {
-			enderecos2.add(new Endereco(1, "04117010"));
+			enderecos2.add(new Endereco("04117010", 1));
 		}
 		empresaCompleto.setEnderecos(enderecos2);
 	}
@@ -511,10 +570,23 @@ public class EmpresaTest {
 	//////////////////////////////////////////////// TESTE LISTA FUNCIONARIO ////////////////////////////////////////////////
 	@Test
 	public void deve_aceitar_lista_de_funcionarios_com_tamanho_4() {
-		funcionarios2.add(new Funcionario("17255071023", "João"));
-		funcionarios2.add(new Funcionario("17255071023", "João"));
-		funcionarios2.add(new Funcionario("17255071023", "João"));
-		funcionarios2.add(new Funcionario("17255071023", "João"));
+		funcionarios2.add(new Funcionario("17255071023", empresa, "João"));
+		funcionarios2.add(new Funcionario("17255071023", empresa, "João"));
+		funcionarios2.add(new Funcionario("17255071023", empresa, "João"));
+		funcionarios2.add(new Funcionario("17255071023", empresa, "João"));
+		
+		empresaCompleto.setFuncionarios(funcionarios2);
+		assertNotNull(empresaCompleto.getFuncionarios());
+		assertEquals(4, empresaCompleto.getFuncionarios().size());
+	}
+	
+	@Test
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_teste_lista_de_funcionarios_com_tamanho_4() {
+		funcionarios2.add(new Funcionario("17255071023", empresa, "João"));
+		funcionarios2.add(new Funcionario("17255071023", empresa, "João"));
+		funcionarios2.add(new Funcionario("17255071023", empresa, "João"));
+		funcionarios2.add(new Funcionario("17255071023", empresa, "João"));
 		
 		empresaCompleto.setFuncionarios(funcionarios2);
 		assertNotNull(empresaCompleto.getFuncionarios());
@@ -524,7 +596,7 @@ public class EmpresaTest {
 	@Test
 	public void deve_aceitar_lista_de_funcionarios_com_tamanho_50() {
 		for (int i = 0; i < 50; i++) {
-			funcionarios2.add(new Funcionario("17255071023", "João"));
+			funcionarios2.add(new Funcionario("17255071023", empresa, "João"));
 		}
 		empresaCompleto.setFuncionarios(funcionarios2);
 		
@@ -539,9 +611,9 @@ public class EmpresaTest {
 	
 	@Test(expected = IllegalStateException.class)
 	public void nao_deve_aceitar_lista_de_funcionarios_com_tamanho_menor_que_4() {
-		funcionarios2.add(new Funcionario("17255071023", "João"));
-		funcionarios2.add(new Funcionario("17255071023", "João"));
-		funcionarios2.add(new Funcionario("17255071023", "João"));
+		funcionarios2.add(new Funcionario("17255071023", empresa, "João"));
+		funcionarios2.add(new Funcionario("17255071023", empresa, "João"));
+		funcionarios2.add(new Funcionario("17255071023", empresa, "João"));
 		
 		empresaCompleto.setFuncionarios(funcionarios2);
 	}
@@ -549,7 +621,7 @@ public class EmpresaTest {
 	@Test(expected = IllegalStateException.class)
 	public void nao_deve_aceitar_lista_de_funcionarios_com_tamanho_maior_que_50() {
 		for (int i = 0; i <= 50; i++) {
-			funcionarios2.add(new Funcionario("17255071023", "João"));
+			funcionarios2.add(new Funcionario("17255071023", empresa, "João"));
 		}
 		empresaCompleto.setFuncionarios(funcionarios2);
 	} 
@@ -557,14 +629,13 @@ public class EmpresaTest {
 	//////////////////////////////////////////////////// TESTE TOSTRING ////////////////////////////////////////////////////
 	@Test
 	public void deve_retornar_cod_razao_social_nome_fantasia_cnpj_telefone_email_endereco_funcionario_no_tostring() {
-		empresa = new Empresa(RAZAO_SOCIAL, NOME_FANTASIA, CNPJ_EMPRESA_2, telefone, email, enderecos, funcionarios); 
-		System.out.println(empresa);
+		empresa = new Empresa(CNPJ_EMPRESA, RAZAO_SOCIAL, NOME_FANTASIA, telefones, emails, enderecos, funcionarios); 
 		assertEquals(RESULTADO_ESPERADO, empresa.toString());
 	}
 	
 	@Test
 	public void nao_deve_retornar_cod_razao_social_nome_fantasia_cnpj_telefone_email_endereco_funcionario_no_tostring() {
-		empresa = new Empresa(RAZAO_SOCIAL_2, NOME_FANTASIA_2, CNPJ_EMPRESA_2, telefone, email, enderecos, funcionarios);
+		empresa = new Empresa(CNPJ_EMPRESA_2, RAZAO_SOCIAL, NOME_FANTASIA, telefones, emails, enderecos, funcionarios);
 		assertNotEquals(RESULTADO_ESPERADO, empresa.toString());
 	}
 	
@@ -698,11 +769,10 @@ public class EmpresaTest {
 		empresaCompleto.setDataAlteracao(DATA_ALTERACAO_HOJE);
 	}
 
-	// TODO ver se esse teste deve existir, conforme a validacao de pre requisito que fizemos
-//	@Test(expected = IllegalArgumentException.class)
-//	public void nao_deve_aceitar_data_alteracao_nulo() {
-//		empresaCompleto.setDataAlteracao(null);
-//	}
+	@Test(expected = IllegalArgumentException.class)
+	public void nao_deve_aceitar_data_alteracao_nulo() {
+		empresaCompleto.setDataAlteracao(null);
+	}
 	
 	@Test(expected = IllegalStateException.class)
 	public void nao_deve_aceitar_data_alteracao_com_data_criacao_nula() {
@@ -713,7 +783,7 @@ public class EmpresaTest {
 	@Test(expected = IllegalStateException.class)
 	public void nao_deve_aceitar_data_alteracao_anterior_a_data_criacao() {
 		LocalDateTime dataCriacao = LocalDateTime.now();
-		LocalDateTime dataAlteracao = LocalDateTime.of(2020, 04, 18, 12, 00);
+		LocalDateTime dataAlteracao = LocalDateTime.of(2022, 04, 18, 12, 00);
 		empresaCompleto.setDataCriacao(dataCriacao);
 		empresaCompleto.setDataAlteracao(dataAlteracao);
 	}

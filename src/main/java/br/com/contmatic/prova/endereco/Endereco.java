@@ -2,10 +2,12 @@ package br.com.contmatic.prova.endereco;
 
 import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.ENDERECO_BAIRRO_TAMANHO_MAXIMO;
 import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.ENDERECO_BAIRRO_TAMANHO_MINIMO;
+import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.ENDERECO_LOGRADOURO_TAMANHO_MAXIMO;
+import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.ENDERECO_LOGRADOURO_TAMANHO_MINIMO;
 import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.ENDERECO_NUMERO_TAMANHO_MAXIMO;
 import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.ENDERECO_NUMERO_TAMANHO_MINIMO;
-import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.ENDERECO_RUA_TAMANHO_MAXIMO;
-import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.ENDERECO_RUA_TAMANHO_MINIMO;
+import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.ENDERECO_TIPO_LOGRADOURO_TAMANHO_MAXIMO;
+import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.ENDERECO_TIPO_LOGRADOURO_TAMANHO_MINIMO;
 import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_BAIRRO_CARACTER_NUMERICO;
 import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_BAIRRO_NULO;
 import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_BAIRRO_TAMANHO;
@@ -16,13 +18,17 @@ import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGE
 import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_COMPLEMENTO_ALFANUMERICO;
 import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_COMPLEMENTO_NULO;
 import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_COMPLEMENTO_VAZIO;
+import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_LOGRADOURO_CARACTER_ESPECIAIS;
+import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_LOGRADOURO_NULO;
+import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_LOGRADOURO_TAMANHO;
+import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_LOGRADOURO_VAZIO;
 import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_NUMERO_NULO;
 import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_NUMERO_TAMANHO;
 import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_REGEX_CEP;
-import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_RUA_CARACTER_ESPECIAIS;
-import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_RUA_NULO;
-import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_RUA_TAMANHO;
-import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_RUA_VAZIO;
+import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_TIPO_LOGRADOURO_CARACTER;
+import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_TIPO_LOGRADOURO_NULO;
+import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_TIPO_LOGRADOURO_TAMANHO;
+import static br.com.contmatic.prova.utils.constantes.EnderecoConstantes.MENSAGEM_TIPO_LOGRADOURO_VAZIO;
 import static br.com.contmatic.prova.utils.constantes.Regex.REGEX_ALFANUMERICO;
 import static br.com.contmatic.prova.utils.constantes.Regex.REGEX_CARACTER;
 import static br.com.contmatic.prova.utils.constantes.Regex.REGEX_CEP;
@@ -36,42 +42,57 @@ import static br.com.contmatic.prova.utils.validacao.Validacao.validarVazio;
 
 public class Endereco {
 	
-	private String rua;
-	
-	private String bairro;
+	private String cep;
 	
 	private Integer numero;
 	
-	private String complemento;
+	private String logradouro;
 	
-	private String cep;
+	private String tipoLogradouro;
+	
+	private String bairro;
+	
+	private String complemento;
 	
 	private Cidade cidade; 
 	
-	public Endereco(Integer numero, String cep) {
-		setNumero(numero); 
+	public Endereco(String cep, Integer numero) {
 		setCep(cep);
+		setNumero(numero); 
 	}
 
-	public Endereco(String rua, String bairro, Integer numero, String complemento, String cep, Cidade cidade) {
-		setRua(rua);  
-		setBairro(bairro);  
-		setNumero(numero); 
-		setComplemento(complemento); 
+	public Endereco(String cep, Integer numero, String logradouro, String tipoLogradouro, String bairro, String complemento, Cidade cidade) {
 		setCep(cep); 
+		setNumero(numero); 
+		setLogradouro(logradouro);  
+		setTipoLogradouro(tipoLogradouro);
+		setBairro(bairro);  
+		setComplemento(complemento); 
 		setCidade(cidade);
 	}
 
-	public String getRua() {
-		return rua;
+	public String getLogradouro() {
+		return logradouro;
 	}
 
-	public void setRua(String rua) {
-		validarNulo(rua, MENSAGEM_RUA_NULO);
-		validarVazio(rua, MENSAGEM_RUA_VAZIO);
-		validarAlfanumerico(rua, REGEX_ALFANUMERICO, MENSAGEM_RUA_CARACTER_ESPECIAIS);
-		validarTamanhoString(rua, ENDERECO_RUA_TAMANHO_MINIMO, ENDERECO_RUA_TAMANHO_MAXIMO, MENSAGEM_RUA_TAMANHO);
-		this.rua = rua;
+	public void setLogradouro(String logradouro) {
+		validarNulo(logradouro, MENSAGEM_LOGRADOURO_NULO);
+		validarVazio(logradouro, MENSAGEM_LOGRADOURO_VAZIO);
+		validarAlfanumerico(logradouro, REGEX_ALFANUMERICO, MENSAGEM_LOGRADOURO_CARACTER_ESPECIAIS);
+		validarTamanhoString(logradouro, ENDERECO_LOGRADOURO_TAMANHO_MINIMO, ENDERECO_LOGRADOURO_TAMANHO_MAXIMO, MENSAGEM_LOGRADOURO_TAMANHO);
+		this.logradouro = logradouro;
+	}
+	
+	public String getTipoLogradouro() {
+		return tipoLogradouro;
+	}
+
+	public void setTipoLogradouro(String tipoLogradouro) {
+		validarNulo(tipoLogradouro, MENSAGEM_TIPO_LOGRADOURO_NULO);
+		validarVazio(tipoLogradouro, MENSAGEM_TIPO_LOGRADOURO_VAZIO);
+		validarCaracter(tipoLogradouro, REGEX_CARACTER, MENSAGEM_TIPO_LOGRADOURO_CARACTER);
+		validarTamanhoString(tipoLogradouro, ENDERECO_TIPO_LOGRADOURO_TAMANHO_MINIMO, ENDERECO_TIPO_LOGRADOURO_TAMANHO_MAXIMO, MENSAGEM_TIPO_LOGRADOURO_TAMANHO);
+		this.tipoLogradouro = tipoLogradouro;
 	}
 	
 	public String getBairro() {
@@ -126,7 +147,7 @@ public class Endereco {
 		validarNulo(cidade, MENSAGEM_CIDADE_NULO);
 		this.cidade = cidade;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -149,13 +170,15 @@ public class Endereco {
 			return false;
 		return numero.equals(other.numero);
 	}
-	
+
 	@Override
 	public String toString() {
-		return new StringBuilder().append("Endereco [rua=").append(rua)
-				.append(", numero=").append(numero)
+		return new StringBuilder().append("Endereco [cep=").append(cep)
+				.append(", numero=").append(numero) 
+			    .append(", logradouro=").append(logradouro)
+			    .append(", tipoLogradouro=").append(tipoLogradouro)
+			    .append(", bairro=").append(bairro)
 			    .append(", complemento=").append(complemento)
-			    .append(", cep=").append(cep)
 			    .append(", cidade=").append(cidade)
 			    .append("]")
 			    .toString();

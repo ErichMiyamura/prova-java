@@ -1,6 +1,6 @@
 package br.com.contmatic.prova.utils.constantes;
 
-public class TelefoneConstantes {
+public final class TelefoneConstantes {
 
 	// numericos
 	// NUMERO TELEFONE
@@ -29,4 +29,6 @@ public class TelefoneConstantes {
 	public static final String MENSAGEM_TIPO_TELEFONE_VAZIO = "Telefone não pode estar vazio.";
 	public static final String MENSAGEM_TIPO_TELEFONE_CARACTER_NUMERICO = "Tipo de Telefone não deve conter número.";
 	public static final String MENSAGEM_TIPO_TELEFONE_TAMANHO = "Tipo de Telefone deve ter no mínimo " + TIPO_TELEFONE_TAMANHO_MINIMO + " e no máximo " + TIPO_TELEFONE_TAMANHO_MAXIMO + " caracteres";
+	
+	private TelefoneConstantes() {}
 }

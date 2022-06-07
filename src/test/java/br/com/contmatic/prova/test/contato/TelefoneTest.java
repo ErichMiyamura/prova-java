@@ -13,6 +13,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import br.com.contmatic.prova.contato.Telefone;
@@ -47,7 +48,7 @@ public class TelefoneTest {
 	}
 	
 	//////////////////////////////////////////////////// TESTE CONSTRUTOR OBRIGATORIO ////////////////////////////////////////////////////
-	@Test
+	@Test(timeout = 1000)
 	public void deve_verificar_o_construtor_classe_obrigatorio() {
 		Telefone t1 = new Telefone(DDI, DDD, TELEFONE);
 
@@ -110,6 +111,13 @@ public class TelefoneTest {
 		telefoneCompleto.setDdi("+55");
 		assertThat(telefoneCompleto.getDdi(), is("+55"));
 	}
+	
+	@Test
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_teste_ddi() {
+		telefoneCompleto.setDdi("+55");
+		assertThat(telefoneCompleto.getDdi(), is("+55"));
+	}
 
 	@Test
 	public void deve_verificar_que_ddi_nao_sao_iguais() {
@@ -144,6 +152,13 @@ public class TelefoneTest {
 	////////////////////////////////////////////////////TESTE DDD ////////////////////////////////////////////////////
 	@Test
 	public void deve_aceitar_ddd() {
+		telefoneCompleto.setDdd("11");
+		assertThat(telefoneCompleto.getDdd(), is("11"));
+	}
+	
+	@Test
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_teste_ddd() {
 		telefoneCompleto.setDdd("11");
 		assertThat(telefoneCompleto.getDdd(), is("11"));
 	}
@@ -184,6 +199,13 @@ public class TelefoneTest {
 		telefoneCompleto.setNumero("988932333");
 		assertThat(telefoneCompleto.getNumero(), is("988932333"));
 	}
+	
+	@Test
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_teste_telefone() {
+		telefoneCompleto.setNumero("988932333");
+		assertThat(telefoneCompleto.getNumero(), is("988932333"));
+	}
 
 	@Test
 	public void deve_verificar_que_telefone_nao_sao_iguais() {
@@ -218,6 +240,12 @@ public class TelefoneTest {
 	//////////////////////////////////////////////////// TESTE TIPO TELEFONE ////////////////////////////////////////////////////
 	@Test
 	public void deve_aceitar_tipo_telefone() {
+		assertThat(telefoneCompleto.getTipo(), is("Comercial"));
+	}
+	
+	@Test
+	@Ignore("Não rodar teste")
+	public void deve_ignorar_tipo_telefone() {
 		assertThat(telefoneCompleto.getTipo(), is("Comercial"));
 	}
 

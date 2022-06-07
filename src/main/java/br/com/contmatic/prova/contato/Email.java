@@ -76,7 +76,7 @@ public class Email {
 
 	@Override
 	public String toString() {
-		return new StringBuilder().append("Email [enderecoEmail=").append(endereco)
+		return new StringBuilder().append("Email [endereco=").append(endereco)
 				.append(", tipo=").append(tipo)
 			    .append("]")
 			    .toString();

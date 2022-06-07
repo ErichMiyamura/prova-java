@@ -36,7 +36,7 @@ import static br.com.contmatic.prova.utils.validacao.Validacao.validarTamanhoStr
 import static br.com.contmatic.prova.utils.validacao.Validacao.validarVazio;
 import static br.com.contmatic.prova.utils.validacao.ValidacaoData.validarDataAntiga;
 import static br.com.contmatic.prova.utils.validacao.ValidacaoData.validarDataFutura;
-import static br.com.contmatic.prova.utils.validacao.ValidacaoData.validarDataIsBefore;
+import static br.com.contmatic.prova.utils.validacao.ValidacaoData.validarDataAnterior;
 
 import java.time.LocalDateTime;
 
@@ -108,8 +108,7 @@ public abstract class Auditoria {
 		validarPreRequisitoNulo(dataCriacao, MENSAGEM_DATA_ALTERACAO_PRE_REQUISITO);
 		validarDataAntiga(dataAlteracao, AUDITORIA_DATA_ALTERACAO_INTERVALO_ANO, MENSAGEM_DATA_ALTERACAO_ANTIGA);
 		validarDataFutura(dataAlteracao, AUDITORIA_DATA_ALTERACAO_INTERVALO_ANO, MENSAGEM_DATA_ALTERACAO_FUTURA);
-		// TODO comparar a data de alteracao é anterior a data criacao
-		validarDataIsBefore(dataAlteracao, AUDITORIA_DATA_CRIACAO_INTERVALO_ANO, MENSAGEM_DATA_ALTERACAO_ANTERIOR_A_DATA_CRIACAO);
+		validarDataAnterior(dataAlteracao, dataCriacao, MENSAGEM_DATA_ALTERACAO_ANTERIOR_A_DATA_CRIACAO);
 		this.dataAlteracao = dataAlteracao;
 	}
 
@@ -121,6 +120,17 @@ public abstract class Auditoria {
 		validarNulo(ipAlteracao, MENSAGEM_IP_ALTERACAO_NULO);
 		validarRegex(ipAlteracao, REGEX_IP, MENSAGEM_REGEX_IP_ALTERACAO);
 		this.ipAlteracao = ipAlteracao;
+	}
+	
+	public String toString() {
+		return new StringBuilder().append("Auditoria [nomeUsuarioCriacao=").append(nomeUsuarioCriacao)
+				.append(", dataCriacao=").append(dataCriacao)
+			    .append(", ipCriacao=").append(ipCriacao)
+			    .append(", nomeUsuarioAlteracao=").append(nomeUsuarioAlteracao)
+			    .append(", dataAlteracao=").append(dataAlteracao)
+			    .append(", ipAlteracao=").append(ipAlteracao)
+			    .append("]")
+			    .toString();
 	}
 	
 }

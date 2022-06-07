@@ -114,12 +114,6 @@ public final class Validacao {
 		}
 	}
 	
-	public static void validarRegexLista(List<?> campoStr, String regex, String mensagemRegexLista) {
-		if (!campoStr.equals(regex)) {
-			throw new IllegalStateException(mensagemRegexLista);
-		}
-	}
-	
 	// VALIDAÇÃO NUMEROS //
 	public static void validarTamanhoNumeroInteiro(Integer campo, int tamanhoMinimo, int tamanhoMaximo, String mensagem) {
 		if (campo < tamanhoMinimo || campo > tamanhoMaximo) {

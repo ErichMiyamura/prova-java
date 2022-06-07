@@ -1,7 +1,7 @@
 package br.com.contmatic.prova.utils.constantes;
 
-public class EmailConstantes {
-
+public final class EmailConstantes {
+	
 	// numericos
 	// TIPO EMAIL
 	public static final int TIPO_EMAIL_TAMANHO_MINIMO = 3;
@@ -11,11 +11,13 @@ public class EmailConstantes {
 	// ENDERECO EMAIL
 	public static final String MENSAGEM_EMAIL_NULO = "Email não pode estar em branco.";
 	public static final String MENSAGEM_EMAIL_VAZIO = "Email não pode estar vazio.";
-	public static final String MENSAGEM_REGEX_EMAIL = "Email não deve ter caracteres especiais e números após o símbolo arroba.";
+	public static final String MENSAGEM_REGEX_EMAIL = "Email não deve ter caracteres especiais, números após o símbolo arroba ou espaços.";
 	// TIPO EMAIL
 	public static final String MENSAGEM_TIPO_EMAIL_NULO = "Email não pode estar em branco.";
 	public static final String MENSAGEM_TIPO_EMAIL_VAZIO = "Email não pode estar vazio.";
 	public static final String MENSAGEM_TIPO_EMAIL_CARACTER_NUMERICO = "Tipo de Email não deve conter número.";
 	public static final String MENSAGEM_TIPO_EMAIL_TAMANHO = "Tipo de Email deve ter no mínimo " + TIPO_EMAIL_TAMANHO_MINIMO + " e no máximo " + TIPO_EMAIL_TAMANHO_MAXIMO + " caracteres";
 
+	private EmailConstantes() {}
+	
 }
