@@ -180,17 +180,17 @@ public class EnderecoTest {
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_rua_com_espaço_no_inicio() {
+	public void nao_deve_aceitar_rua_com_espaco_no_inicio() {
 		enderecoCompleto.setLogradouro(" Av 13 de maio");
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_rua_com_espaço_no_final() {
+	public void nao_deve_aceitar_rua_com_espaco_no_final() {
 		enderecoCompleto.setLogradouro("Av 13 de maio ");
 	}
 
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_rua_com_mais_de_um_espaço_no_meio() {
+	public void nao_deve_aceitar_rua_com_mais_de_um_espaco_no_meio() {
 		enderecoCompleto.setLogradouro("Av 13 de    maio");
 	}
 	
@@ -237,17 +237,17 @@ public class EnderecoTest {
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_bairro_com_espaço_no_inicio() {
+	public void nao_deve_aceitar_bairro_com_espaco_no_inicio() {
 		enderecoCompleto.setBairro(" Bela Vista");
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_bairro_com_espaço_no_final() {
+	public void nao_deve_aceitar_bairro_com_espaco_no_final() {
 		enderecoCompleto.setBairro("Bela Vista ");
 	}
 
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_bairro_com_mais_de_um_espaço_no_meio() {
+	public void nao_deve_aceitar_bairro_com_mais_de_um_espaco_no_meio() {
 		enderecoCompleto.setBairro("Bela    Vista");
 	}
 	
@@ -328,17 +328,17 @@ public class EnderecoTest {
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_complemento_com_espaço_no_inicio() {
+	public void nao_deve_aceitar_complemento_com_espaco_no_inicio() {
 		enderecoCompleto.setComplemento(" ap 123");
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_complemento_com_espaço_no_final() {
+	public void nao_deve_aceitar_complemento_com_espaco_no_final() {
 		enderecoCompleto.setComplemento("ap 123 ");
 	}
 
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_complemento_com_mais_de_um_espaço_no_meio() {
+	public void nao_deve_aceitar_complemento_com_mais_de_um_espaco_no_meio() {
 		enderecoCompleto.setComplemento("ap   123");
 	}
 	

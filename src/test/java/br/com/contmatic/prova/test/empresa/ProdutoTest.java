@@ -194,17 +194,17 @@ public class ProdutoTest {
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_nome_com_espaço_no_inicio() {
+	public void nao_deve_aceitar_nome_com_espaco_no_inicio() {
 		produtoCompleto.setNome(" Loja");
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_nome_com_espaço_no_final() {
+	public void nao_deve_aceitar_nome_com_espaco_no_final() {
 		produtoCompleto.setNome("Loja ");
 	}
 
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_nome_com_mais_de_um_espaço_no_meio() {
+	public void nao_deve_aceitar_nome_com_mais_de_um_espaco_no_meio() {
 		produtoCompleto.setNome("Lo   ja");
 	}
 	

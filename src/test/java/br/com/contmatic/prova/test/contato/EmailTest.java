@@ -177,17 +177,17 @@ public class EmailTest {
 	}
 
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_tipo_email_com_espaço_no_inicio() {
+	public void nao_deve_aceitar_tipo_email_com_espaco_no_inicio() {
 		emailCompleto.setTipo(" Pessoal");
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_tipo_email_com_espaço_no_final() {
+	public void nao_deve_aceitar_tipo_email_com_espaco_no_final() {
 		emailCompleto.setTipo("Pessoal ");
 	}
 
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_tipo_email_com_mais_de_um_espaço_no_meio() {
+	public void nao_deve_aceitar_tipo_email_com_mais_de_um_espaco_no_meio() {
 		emailCompleto.setTipo("Pes  soal");
 	}
 	

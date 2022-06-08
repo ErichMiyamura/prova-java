@@ -286,17 +286,17 @@ public class TelefoneTest {
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_tipo_telefone_com_espaço_no_inicio() {
+	public void nao_deve_aceitar_tipo_telefone_com_espaco_no_inicio() {
 		telefoneCompleto.setTipo(" Pessoal");
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_tipo_telefone_com_espaço_no_final() {
+	public void nao_deve_aceitar_tipo_telefone_com_espaco_no_final() {
 		telefoneCompleto.setTipo("Pessoal ");
 	}
 
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_tipo_telefone_com_mais_de_um_espaço_no_meio() {
+	public void nao_deve_aceitar_tipo_telefone_com_mais_de_um_espaco_no_meio() {
 		telefoneCompleto.setTipo("Pes  soal");
 	}
 	 

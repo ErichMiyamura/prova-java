@@ -146,17 +146,17 @@ public class UfTest {
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_nome_com_espaço_no_inicio() {
+	public void nao_deve_aceitar_nome_com_espaco_no_inicio() {
 		ufCompleto.setNome(" São Paulo");
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_nome_com_espaço_no_final() {
+	public void nao_deve_aceitar_nome_com_espaco_no_final() {
 		ufCompleto.setNome("São Paulo ");
 	}
 
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_nome_com_mais_de_um_espaço_no_meio() {
+	public void nao_deve_aceitar_nome_com_mais_de_um_espaco_no_meio() {
 		ufCompleto.setNome("São   Paulo");
 	}
 	
@@ -208,17 +208,17 @@ public class UfTest {
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_sigla_com_espaço_no_inicio() {
+	public void nao_deve_aceitar_sigla_com_espaco_no_inicio() {
 		ufCompleto.setSigla(" MG");
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_sigla_com_espaço_no_final() {
+	public void nao_deve_aceitar_sigla_com_espaco_no_final() {
 		ufCompleto.setSigla("MG ");
 	}
 
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_sigla_com_mais_de_um_espaço_no_meio() {
+	public void nao_deve_aceitar_sigla_com_mais_de_um_espaco_no_meio() {
 		ufCompleto.setSigla("M  G");
 	}
 	
@@ -270,17 +270,17 @@ public class UfTest {
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_pais_com_espaço_no_inicio() {
+	public void nao_deve_aceitar_pais_com_espaco_no_inicio() {
 		ufCompleto.setSigla(" Brasil");
 	}
 	
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_pais_com_espaço_no_final() {
+	public void nao_deve_aceitar_pais_com_espaco_no_final() {
 		ufCompleto.setSigla("Brasil ");
 	}
 
 	@Test(expected = IllegalStateException.class)
-	public void nao_deve_aceitar_pais_com_mais_de_um_espaço_no_meio() {
+	public void nao_deve_aceitar_pais_com_mais_de_um_espaco_no_meio() {
 		ufCompleto.setSigla("Bra    sil");
 	}
 	
